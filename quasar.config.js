@@ -9,14 +9,15 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require("quasar/wrappers");
+const path = require("path");
 
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
       // fix: true,
-      // include: [],
-      // exclude: [],
-      // rawOptions: {},
+      // include = [],
+      // exclude = [],
+      // rawOptions = {},
       warnings: true,
       errors: true,
     },
@@ -27,7 +28,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: ["axios"],
+    boot: ["i18n", "axios", "firebaseConnection"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
@@ -53,6 +54,11 @@ module.exports = configure(function (/* ctx */) {
         node: "node16",
       },
 
+      alias: {
+        utils: path.resolve(__dirname, "./src/utils"),
+        models: path.resolve(__dirname, "./src/models"),
+      },
+
       vueRouterMode: "history", // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
@@ -60,9 +66,18 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      // publicPath: '/',
+      publicPath: '/app/',
       // analyze: true,
-      // env: {},
+      env: {
+        APP_NAME: "Quasar App",
+        FIREBASE_API_KEY: "AIzaSyBon3V5fi52U3YLerPGOL5Y9EjwDaYpvN0",
+        FIREBASE_AUTH_DOMAIN: "ghitap-telemed.firebaseapp.com",
+        FIREBASE_PROJECT_ID: "ghitap-telemed",
+        FIREBASE_STORAGE_BUCKET: "ghitap-telemed.appspot.com",
+        FIREBASE_MESSAGING_SENDER_ID: "577746955167",
+        FIREBASE_APP_ID: "1:577746955167:web:e98c04312905242456ebaa",
+        API: "https://localhost:446",
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -72,14 +87,23 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      // vitePlugins: [
-      //   [ 'package-name', { ..options.. } ]
-      // ]
+      vitePlugins: [
+        [
+          "@intlify/vite-plugin-vue-i18n",
+          {
+            // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
+            // compositionOnly: false,
+
+            // you need to set i18n resource including paths !
+            include: path.resolve(__dirname, "./src/i18n/**"),
+          },
+        ],
+      ],
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      // https: true
+      https: true,
       open: true, // opens browser window automatically
     },
 
@@ -87,7 +111,7 @@ module.exports = configure(function (/* ctx */) {
     framework: {
       config: {},
 
-      // iconSet: 'material-icons', // Quasar icon set
+      iconSet: "material-icons", // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
@@ -98,7 +122,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ["Dark", "Dialog", "Loading", "Notify"],
     },
 
     // animations: 'all', // --- includes all animations
@@ -167,7 +191,6 @@ module.exports = configure(function (/* ctx */) {
       // extendElectronMainConf (esbuildConf)
       // extendElectronPreloadConf (esbuildConf)
 
-      // specify the debugging port to use for the Electron app when running in development mode
       inspectPort: 5858,
 
       bundler: "packager", // 'packager' or 'builder'
@@ -186,7 +209,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "quasar-project",
+        appId: "ghitap-telemed-app",
       },
     },
 
