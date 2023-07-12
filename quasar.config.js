@@ -66,17 +66,23 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      publicPath: '/app/',
+      publicPath: '/',
       // analyze: true,
       env: {
         APP_NAME: "Quasar App",
-        FIREBASE_API_KEY: "AIzaSyBon3V5fi52U3YLerPGOL5Y9EjwDaYpvN0",
-        FIREBASE_AUTH_DOMAIN: "ghitap-telemed.firebaseapp.com",
-        FIREBASE_PROJECT_ID: "ghitap-telemed",
-        FIREBASE_STORAGE_BUCKET: "ghitap-telemed.appspot.com",
-        FIREBASE_MESSAGING_SENDER_ID: "577746955167",
-        FIREBASE_APP_ID: "1:577746955167:web:e98c04312905242456ebaa",
-        API: "https://localhost:446",
+        FIREBASE_API_KEY: "AIzaSyBK42vKbOJWVI-5yY51kSD-s517C82d8pk",
+        FIREBASE_AUTH_DOMAIN: "telemed-app-e8fe8.firebaseapp.com",
+        FIREBASE_PROJECT_ID: "telemed-app-e8fe8",
+        FIREBASE_STORAGE_BUCKET: "telemed-app-e8fe8.appspot.com",
+        FIREBASE_MESSAGING_SENDER_ID: "401786354225",
+        FIREBASE_APP_ID: "1:401786354225:web:b479746711078925327310"
+        // FIREBASE_API_KEY: "AIzaSyBon3V5fi52U3YLerPGOL5Y9EjwDaYpvN0",
+        // FIREBASE_AUTH_DOMAIN: "ghitap-telemed.firebaseapp.com",
+        // FIREBASE_PROJECT_ID: "ghitap-telemed",
+        // FIREBASE_STORAGE_BUCKET: "ghitap-telemed.appspot.com",
+        // FIREBASE_MESSAGING_SENDER_ID: "577746955167",
+        // FIREBASE_APP_ID: "1:577746955167:web:e98c04312905242456ebaa",
+        // API: "https://localhost:446",
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
